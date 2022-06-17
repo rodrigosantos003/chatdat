@@ -66,7 +66,7 @@ function createRoom(request, response) {
                         response.json({
                           message: "Sala criada com sucesso",
                           room: {
-                            id: rows[0].id,
+                            id: rows.id,
                             name: name,
                             private: isPrivate,
                             password: password,

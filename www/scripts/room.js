@@ -185,7 +185,7 @@ function enterRoom() {
 
   getRoom(roomName, function () {
     if (selectedRoom) {
-      if (selectedRoom.private == 1) {
+      if (selectedRoom[0].private == 1) {
         password = prompt("Introduza a password da sala");
       }
 
