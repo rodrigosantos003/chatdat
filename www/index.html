@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <!--META TAGS-->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!--STYLESHEETS-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+  <link href="styles/main.css" rel="stylesheet" />
+
+  <!--TITLE-->
+  <title>Projeto PW Grupo 1</title>
+</head>
+
+<body>
+  <!--NAVBAR-->
+  <nav id="navbar">
+    <ul class="navbar-list">
+      <li><a id="primaryLink">Entrar</a></li>
+      <li><a id="secondaryLink">Registar</a></li>
+    </ul>
+  </nav>
+
+  <!--HEADINGS-->
+  <header class="text-center">
+    <h1 class="display-3">ChatDat</h1>
+    <h2 id="page-title"></h2>
+  </header>
+
+  <!--MAIN CONTENT-->
+  <main class="content">
+    <div class="container position-absolute top-50 start-50 translate-middle">
+      <!--SIGNUP FORM-->
+      <div id="signup" class="page">
+        <form class="row g-3" action="javascript: registerUser()" method="post">
+          <!-- Username -->
+          <div class="col-md-6 mx-auto">
+            <label for="username" class="form-label text-center">Nome de Utilizador</label>
+            <input type="text" name="username" class="form-control" id="signup-username"
+              placeholder="Introduza o username" required />
+          </div>
+
+          <!-- Deault Colors -->
+          <div class="col-md-12 d-flex justify-content-center">
+            <input type="button" class="col-md-1 default-color" style="background-color: red"
+              onclick="setColor(this)" />
+            <input type="button" class="col-md-1 default-color" style="background-color: green"
+              onclick="setColor(this)" />
+            <input type="button" class="col-md-1 default-color" style="background-color: yellow"
+              onclick="setColor(this)" />
+            <input type="button" class="col-md-1 default-color" style="background-color: pink"
+              onclick="setColor(this)" />
+            <input type="button" class="col-md-1 default-color" style="background-color: blue"
+              onclick="setColor(this)" />
+          </div>
+
+          <!-- Color Picker -->
+          <div class="col-md-12 d-flex justify-content-center">
+            <span id="more-colors" onclick="showPicker()">Ver picker &darr;</span>
+          </div>
+          <div class="col-md-12 d-flex justify-content-center">
+            <input type="color" name="color" class="form-control form-control-color hideElement" id="color-picker"
+              onchange="selectedColor = this.value" />
+          </div>
+
+          <!-- User Password -->
+          <div class="col-md-6 mx-auto">
+            <label for="password" class="form-label text-center">Palavra-Passe</label>
+            <input type="password" name="password" class="form-control" id="signup-password"
+              placeholder="Introduza a password" required />
+          </div>
+
+          <div class="text-center mx-auto">
+            <button type="submit" class="btn btn-outline-primary">
+              Criar Conta
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!--LOGIN FORM-->
+      <div id="login" class="page">
+        <form class="d-grid gap-3" action="javascript: loginUser()" method="post">
+          <!-- Username -->
+          <div class="col-md-6 mx-auto">
+            <label for="login-username" class="form-label text-center">Nome de Utilizador</label>
+            <input type="text" name="username" class="form-control" id="login-username"
+              placeholder="Introduza o username" required />
+          </div>
+
+          <!-- Password -->
+          <div class="col-md-6 mx-auto">
+            <label for="login-password" class="form-label text-center">Palavra-passe</label>
+            <input type="password" name="password" class="form-control" id="login-password"
+              placeholder="Introduza a password" required />
+          </div>
+
+          <div class="text-center mx-auto">
+            <button type="submit" class="btn btn-outline-primary">
+              Iniciar Sessão
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!--USER PROFILE-->
+      <div id="userprofile" class="page">
+        <div class="mx-auto text-center">
+          <button class="col-md-4 btn btn-outline-primary userButton"
+            onclick="loadAvailableRooms(); showPage('enter-room', 'Entrar numa sala')">
+            Entrar numa Sala
+          </button>
+          <br />
+          <br />
+          <button class="col-md-4 btn btn-outline-primary userButton"
+            onclick="showPage('create-room', 'Criar uma sala')">
+            Criar uma Sala
+          </button>
+          <br />
+          <br />
+          <button class="col-md-4 btn btn-outline-primary userButton" data-toggle="modal" data-target="#my-rooms"
+            onclick="buildRoomsList();">
+            As Minhas Salas
+          </button>
+        </div>
+      </div>
+
+      <!--ENTER A ROOM-->
+      <div id="enter-room" class="page">
+        <form class="d-grid gap-3" action="javascript: enterRoom()" method="post">
+          <div class="col-md-6 mx-auto">
+            <label for="chat-rooms-list" class="form-label text-center">Salas Disponíveis</label>
+            <input list="chat-rooms" id="chat-rooms-list" class="form-control" required />
+            <datalist id="chat-rooms">
+              <!--Available chat rooms-->
+            </datalist>
+          </div>
+
+          <div class="text-center mx-auto">
+            <button type="submit" class="btn btn-outline-primary">
+              Confirmar
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!--CREATE A ROOM-->
+      <div id="create-room" class="page">
+        <form class="d-grid gap-3" action="javascript: createRoom()" method="post">
+          <div class="col-md-6 mx-auto">
+            <label for="room-name" class="form-label text-center">Nome da Sala</label>
+            <input type="text" class="form-control" name="room-name" id="room-name"
+              placeholder="Introduza o nome da sala" required />
+          </div>
+
+          <div class="col-md-6 mx-auto">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="private-room" id="private-room" value="true"
+                onclick="showRoomPassword()" />
+              <label class="form-check-label" for="private-room">
+                Privada
+              </label>
+            </div>
+          </div>
+
+          <div class="col-md-6 mx-auto hideElement" id="private-room-password">
+            <label for="room-password" class="form-label text-center">Palavra-passe</label>
+            <input type="password" class="form-control" name="room-password" id="room-password"
+              placeholder="Introduza a palavra-passe" />
+          </div>
+
+          <div class="text-center mx-auto">
+            <button type="submit" class="btn btn-outline-primary">
+              Criar Sala
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- USER ROOMS MODAL -->
+    <div class="modal fade" id="my-rooms" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Salas</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" id="list-userRooms">
+            <!-- Rooms List -->
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!--SCRIPTS-->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="scripts/index.js"></script>
+  <script src="scripts/user.js"></script>
+  <script src="scripts/room.js"></script>
+  <script src="scripts/message.js"></script>
+</body>
+
+</html>

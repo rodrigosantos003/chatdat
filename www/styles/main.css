@@ -1,0 +1,168 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+/*---------------------
+       GENERAL
+-----------------------*/
+* {
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  background-color: #f8f9fa;
+}
+
+.hideElement {
+  display: none;
+}
+
+#more-colors {
+  cursor: pointer;
+}
+
+#user-typing {
+  font-size: smaller;
+  position: absolute;
+  top: 88vh;
+  left: 0vw;
+  bottom: 12vh;
+}
+
+/*---------------------
+        NAVBAR
+-----------------------*/
+
+.navbar-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #343a40;
+}
+
+.navbar-list li {
+  display: inline;
+  float: right;
+}
+
+.navbar-list li a {
+  display: block;
+  color: #f8f9fa;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.navbar-list li a:hover {
+  transition: 0.3s;
+  background-color: #f8f9fa;
+  color: #343a40;
+}
+
+/*---------------------
+       BUTTONS
+-----------------------*/
+
+.btn-outline-primary {
+  color: #343a40;
+  border-color: #343a40;
+}
+
+.btn-outline-primary:hover {
+  color: #f8f9fa;
+  background-color: #343a40;
+  border-color: #343a40;
+}
+
+.default-color {
+  width: 30px;
+  height: 30px;
+  margin-left: 30px;
+}
+
+/*---------------------
+        CHAT
+-----------------------*/
+
+#message-board {
+  display: flex;
+  height: 85vh;
+  overflow: hidden;
+}
+
+#chat-messages {
+  position: relative;
+  left: 0px;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+
+  /*Hide scrollbar for IE, Edge and Firexof*/
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/*Hide scrollbar for Chrome, Safari and Opera*/
+#chat-messages::-webkit-scrollbar {
+  display: none;
+}
+
+.message {
+  align-self: flex-start;
+  text-align: start;
+}
+
+.message .time {
+  float: right;
+}
+
+.user-message {
+  align-self: flex-end;
+  text-align: end;
+}
+
+.user-message .time {
+  float: left;
+}
+
+#room-info-nav {
+  position: absolute;
+  top: 14px;
+  left: 650px;
+  color: white;
+  font-size: 18px;
+}
+
+#isPrivateMessage {
+  display: none;
+}
+
+.annoucements {
+  font-size: smaller;
+}
+
+/*---------------------
+      MEDIA QUERIES
+-----------------------*/
+@media (max-width: 480px) {
+  #room-info-nav {
+    display: none;
+  }
+  .navbar-list li {
+    float: none;
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  #room-info-nav {
+    position: absolute;
+    left: 50px;
+  }
+}
+
+@media (max-width: 1024px) {
+  #room-info-nav {
+    position: absolute;
+    left: 300px;
+  }
+}

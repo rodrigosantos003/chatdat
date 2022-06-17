@@ -1,0 +1,4 @@
+{
+  "appService.defaultWebAppToDeploy": "/subscriptions/ecda2e93-8a3b-4094-a412-7cbbbe756cde/microsoft.web/sites/subscriptions/ecda2e93-8a3b-4094-a412-7cbbbe756cde/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/chatdat",
+  "appService.deploySubpath": "."
+}

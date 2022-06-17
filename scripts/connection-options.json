@@ -1,0 +1,7 @@
+{
+  "host": "chatdat.mysql.database.azure.com",
+  "user": "chatdat_admin@chatdat",
+  "password": "eYcQcExC4y7PVP",
+  "database": "chatdat",
+  "port": 3306
+}
