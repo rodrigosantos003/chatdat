@@ -109,8 +109,8 @@ function chatEvents() {
     messageNotification(message);
   });
 
-  socket.on("disconnect", function () {
-    socket.emit("leave room", currentRoom[0].name, currentUser.username);
+  document.getElementById("leaveChat").addEventListener("click", function (e) {
+    leaveChat(socket);
   });
 
   socket.on("leave room", function (room, user) {
@@ -369,12 +369,13 @@ function clearImage() {
   selectedImage.removeAttribute("src");
 }
 
-function leaveChat() {
-  var socket = io();
+function leaveChat(socket) {
   var currentRoom = JSON.parse(sessionStorage.getItem("currentRoom"));
   var currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
 
   socket.emit("leave room", currentRoom[0].name, currentUser.username);
+
+  sessionStorage.removeItem("currentRoom");
 
   window.open("./index.html", "_self");
 }
