@@ -33,7 +33,7 @@ function sendMessage(request, response) {
 
     if (image) {
       query = mysql.format(
-        "INSERT INTO message (author, author_color, content, date, image, room_id, private, target) VALUES (?, ?, ?, ?, ?)",
+        "INSERT INTO message (author, author_color, content, date, image, room_id, private, target) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
         [author, author_color, content, date, image, roomId, private, target]
       );
     } else {
