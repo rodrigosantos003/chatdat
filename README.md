@@ -2,4 +2,5 @@
 
 ChatDat - Sistema de Chat
 
-## Hosted on: https://chatdat.azurewebsites.net/
+## Website
+https://chatdat.azurewebsites.net/
