@@ -27,7 +27,6 @@
     "express-session": "^1.17.3",
     "hbs": "^4.2.0",
     "mysql": "^2.18.1",
-    "mysql2": "^2.3.3",
     "nodemon": "^2.0.16",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
